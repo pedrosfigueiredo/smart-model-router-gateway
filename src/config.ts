@@ -27,8 +27,8 @@ export const config: ModelConfig = {
   xTitle: "Smart Model Router Gateway",
   port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
   models: [
-    "inclusionai/ring-2.6-1t:free",
     "arcee-ai/trinity-large-thinking:free",
+    "nvidia/nemotron-3-nano-30b-a3b:free",
   ],
   temperature: 0.2,
   maxTokens: 50,
