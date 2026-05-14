@@ -1,19 +1,12 @@
 import { createServer } from "./server.ts";
+import { config } from "./config.ts";
+import { OpenRouterService } from "./openrouterService.ts";
 
-const app = createServer();
+const openRouterService = new OpenRouterService(config);
+const app = createServer(openRouterService);
 
-const address = await app.listen({ port: 3000, host: "127.0.0.1" });
-app.log.info(`Server is running at ${address}`);
-
-process.on("SIGTERM", async () => {
-  await app.close();
-  process.exit(0);
-});
-
-process.on("SIGINT", async () => {
-  await app.close();
-  process.exit(0);
-});
+await app.listen({ port: config.port, host: "0.0.0.0" });
+console.log(`server running at ${config.port}`);
 
 app
   .inject({
